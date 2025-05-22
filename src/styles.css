@@ -1,7 +1,1 @@
 /* You can add global styles to this file, and also import other style files */
-@font-face {
-      font-family: 'Baskerville';
-      src: url('/src/assets/fonts/BaskervilleBT.ttf') format('truetype');
-      font-weight: normal; /* Adjust as needed for different weights */
-      font-style: normal;  /* Adjust as needed for different styles */
-    }
