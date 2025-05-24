@@ -1,0 +1,42 @@
+.footer_color {
+  background-color: #4A4B4C !important;
+}
+
+.footer_text_color {
+  color: #FFFFFF !important;
+}
+
+.footer_logo_box {
+    background-color: #231F20 !important;
+    color: #FFFFFF !important;
+    border-bottom: #FFFFFF solid 5px;
+}
+
+.container-logo {
+    width: 400px;
+    height: 90px; 
+}
+
+.img_logo_footer {
+    height: 65px;
+}
+
+.color-direccion {
+    color: #FFFFFF !important;
+}
+
+.footer_link_color {
+    color: #FFFFFF !important;
+}
+.footer_link_color:hover {
+    color: #909090 !important;
+}
+
+.titulo_columna_footer {
+    color: #FFFFFF !important;
+    font-size: large;
+}
+
+.footer_fondo {
+    background-color: #0B0B0B !important;
+}
