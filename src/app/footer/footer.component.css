@@ -40,3 +40,12 @@
 .footer_fondo {
     background-color: #0B0B0B !important;
 }
+
+.circle-color {
+    background-color: #0B0B0B !important;
+}
+
+.social_icons {
+    width: 45px;
+    height: 45px;
+}
