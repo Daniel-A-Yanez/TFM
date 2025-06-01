@@ -1,0 +1,48 @@
+.cardprograma{
+  border: none;
+}
+
+.tipoprograma{
+    color: #851819;
+    font-size: smaller;
+}
+
+.nombreprograma{
+    font-weight:300;
+    font-size: larger;
+}
+
+.fechaprograma{
+    font-weight: 300;
+    font-size: small;
+    color: #FFFFFF;
+    margin-bottom: 0px;
+}
+
+.divfecha{
+    background-color: #851819;
+    height: fit-content;
+    width: fit-content;  
+}
+
+.hora_modalidad{
+    font-weight: 200;
+    font-size:medium;
+    margin-bottom: 0px;
+}
+
+.resumenprograma{
+    font-weight: 200;
+    font-size: small;
+}
+
+.btnprograma {
+    width: 100%;
+    background-color: #851819;
+    border-color: #851819;
+}
+
+.btnprograma:hover {
+    background-color: #A52A2A;
+    border-color: #A52A2A;
+}

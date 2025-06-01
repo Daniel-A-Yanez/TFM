@@ -1,3 +1,9 @@
-<p>grid-programas works!</p>
+
 <h2>Programas abiertos</h2>
-<app-tarjeta-programa *ngFor="let item of programas" [programa]="item"></app-tarjeta-programa>
+<div class="container">
+    <div class="row">
+        <div class="col-4" *ngFor="let item of programas">
+        <app-tarjeta-programa [programa]="item"></app-tarjeta-programa>
+        </div>
+    </div>
+</div>
