@@ -2,10 +2,12 @@ import { createRequire } from 'module';const require = createRequire(import.meta
 import {
   BrowserDomAdapter,
   BrowserModule,
-  DOCUMENT,
   EVENT_MANAGER_PLUGINS,
   EventManagerPlugin,
-  HTTP_ROOT_INTERCEPTOR_FNS,
+  HTTP_ROOT_INTERCEPTOR_FNS
+} from "./chunk-LWKPCSVQ.js";
+import {
+  DOCUMENT,
   NullViewportScroller,
   PLATFORM_SERVER_ID,
   PlatformLocation,
@@ -13,7 +15,7 @@ import {
   XhrFactory,
   getDOM,
   setRootDomAdapter
-} from "./chunk-5DEGMZAY.js";
+} from "./chunk-C3HG7CUI.js";
 import {
   ALLOW_MULTIPLE_PLATFORMS,
   APP_ID,
@@ -16832,4 +16834,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-32J4EKKN.js.map
+//# sourceMappingURL=chunk-AKUGYVIZ.js.map
