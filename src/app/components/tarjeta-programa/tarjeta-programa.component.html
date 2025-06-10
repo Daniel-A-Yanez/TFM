@@ -1,24 +1,26 @@
-
-<div class="card p-3 mb-3 cardprograma">
-<h3 class="tipoprograma">{{ programa.tipoprograma }}</h3>
-<h2 class="nombreprograma">{{ programa.nombre }}</h2>
-  <div class="card d-flex">
-    <img class="img-fluid" [src]="programa.imagen" alt="{{ programa.nombre }}" />
-    <div class="card-img-overlay divfecha p-2 m-2">
-      <h4 class="fechaprograma">{{ programa.fechainicio }}</h4>
+<div class="row">
+  <div class="col-md-4" *ngFor="let programa of programas">
+      <div class="card p-3 mb-3 cardprograma">
+        <h3 class="tipoprograma baskerville">{{ programa.tipoprograma }}</h3>
+        <h2 class="nombreprograma baskerville">{{ programa.nombre }}</h2>
+        <div class="card d-flex">
+          <img class="img-fluid imgcardprograma" [src]="programa.imagen" alt="{{ programa.nombre }}" />
+          <div class="card-img-overlay divfecha p-2 m-2">
+            <h4 class="fechaprograma">{{ programa.fechainicio | date: 'mediumDate' }}</h4>
+          </div>
+        </div>
+        <div>
+          <div class="d-flex flex-row justify-content-between mt-2 mb-2">
+            <h5 class="hora_modalidad">{{ programa.duracion }} ({{ programa.ceus }} CEUs)</h5>
+            <h5 class="hora_modalidad">{{ programa.modalidad }}</h5>
+          </div>
+          <div>
+            <p class="resumenprograma">{{ programa.resumen}}</p>
+          </div>
+          <div>
+            <button class="btn btn-primary btnprograma baskerville">Ver Programa</button>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-<div>
-  <div class="d-flex flex-row justify-content-between mt-2 mb-2">
-    <h5 class="hora_modalidad">{{ programa.duracion }} ({{ programa.ceus }} CEUs)</h5>
-    <h5 class="hora_modalidad">{{ programa.modalidad }}</h5>
-  </div>
-<div>
-    <p class="resumenprograma">{{ programa.resumen}}</p>
 </div>
-<div>
-    <button class="btn btn-primary btnprograma">Ver Programa</button>
-</div>
-</div>
-</div>
-

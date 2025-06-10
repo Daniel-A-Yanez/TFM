@@ -1,96 +1,53 @@
 <div class="container-fluid py-5">
-    <div class="container-xxl d-flex justify-content-center">
-        <h2>PRÓXIMOS PROGRAMAS</h2>
-    </div>
+  <div class="container-xxl d-flex justify-content-center">
+    <h2 class="baskerville">PRÓXIMOS PROGRAMAS</h2>
+  </div>
 </div>
 
-
-<div class="container-xxl px-5 py-2">
-    <div class="row">
-        <div class="col-4">  
-            <div id="component" class="d-grid justify-content-center" >
-                <div class="d-grid justify-content-center rounded-top-4" style="background-color: #851819;">
-                <h4 class="text-light  px-2 py-1 text-center">
-                15 Mayo
-                </h4>
-                </div>
-                <div class="position-relative">
-                    <img src="/assets/images/programa_thumbnail.jpg" alt="Gerencia Tributaria" width="100%" height="100%" class="img-fluid">
-                </div>
-                <div class="justify-content-start rounded-bottom-4 py-3" style="background-color: #F4F4F4;">
-                    <div class="row text-lg-start px-2">
-                <h4 class="text-dark fs-6 fw-normal font-family-Baskerville">
-                Curso
-                </h4>
-                </div>
-                <div class="row text-lg-start px-1" style="margin-top: -1rem;">
-                 <h3 class="text-dark fs-4 fw-normal font-family-Baskerville  m-0 px-3 py-2" >
-                Decisiones estratégicas y datos
-                 </h3>
-                 </div>
-                </div>
-                    <div class="bg-light rounded-3 shadow">
-                    </div>
-                </div>
+<div id="programasCarousel" class="carousel slide container-xxl px-5 py-2" data-bs-ride="carousel" data-bs-interval="5000">
+  <div class="carousel-inner">
+    <div class="carousel-item" *ngFor="let grupo of dividirEnGrupos(programas, 3); let i = index" [class.active]="i === 0">
+      <div class="row">
+        <div class="col-md-4 mt-2 mb-2" *ngFor="let programa of grupo">
+          <div id="component" class="d-grid justify-content-center">
+            <div class="d-grid justify-content-center rounded-top-4" style="background-color: #851819;">
+              <h4 class="text-light px-2 py-1 my-2 text-center fecha_bloque_programa">
+                {{programa.fechainicio | date: 'longDate'}}
+              </h4>
             </div>
-
-            <div class="col-4">  
-            <div id="component" class="d-grid justify-content-center" >
-                <div class="d-grid justify-content-center rounded-top-4" style="background-color: #851819;">
-                <h4 class="text-light  px-2 py-1 text-center">
-                15 Mayo
-                </h4>
-                </div>
-                <div class="position-relative">
-                    <img src="/assets/images/programa_thumbnail.jpg" alt="Gerencia Tributaria" width="100%" height="100%" class="img-fluid">
-                </div>
-                <div class="justify-content-start rounded-bottom-4 py-3" style="background-color: #F4F4F4;">
-                    <div class="row text-lg-start px-2">
-                <h4 class="text-dark fs-6 fw-normal font-family-Baskerville">
-                Curso
-                </h4>
-                </div>
-                <div class="row text-lg-start px-1" style="margin-top: -1rem;">
-                 <h3 class="text-dark fs-4 fw-normal font-family-Baskerville  m-0 px-3 py-2" >
-                Decisiones estratégicas y datos
-                 </h3>
-                 </div>
-                </div>
-                    <div class="bg-light rounded-3 shadow">
-                    </div>
-                </div>
+            <div class="position-relative">
+              <img [src]="programa.imagen" [alt]="programa.nombre" width="100%" height="100%" class="img-fluid img-carusel">
             </div>
-
-            <div class="col-4">  
-            <div id="component" class="d-grid justify-content-center" >
-                <div class="d-grid justify-content-center rounded-top-4" style="background-color: #851819;">
-                <h4 class="text-light  px-2 py-1 text-center">
-                15 Mayo
+            <div class="justify-content-start rounded-bottom-4 py-3" style="background-color: #F4F4F4;">
+              <div class="row text-lg-start px-2">
+                <h4 class="text-dark fs-6 fw-normal baskerville">
+                  {{ programa.tipoprograma || 'Curso' }}
                 </h4>
-                </div>
-                <div class="position-relative">
-                    <img src="/assets/images/programa_thumbnail.jpg" alt="Gerencia Tributaria" width="100%" height="100%" class="img-fluid">
-                </div>
-                <div class="justify-content-start rounded-bottom-4 py-3" style="background-color: #F4F4F4;">
-                    <div class="row text-lg-start px-2">
-                <h4 class="text-dark fs-6 fw-normal font-family-Baskerville">
-                Curso
-                </h4>
-                </div>
-                <div class="row text-lg-start px-1" style="margin-top: -1rem;">
-                 <h3 class="text-dark fs-4 fw-normal font-family-Baskerville  m-0 px-3 py-2" >
-                Decisiones estratégicas y datos
-                 </h3>
-                 </div>
-                </div>
-                    <div class="bg-light rounded-3 shadow">
-                    </div>
-                </div>
+              </div>
+              <div class="row text-lg-start px-1" style="margin-top: -1rem;">
+                <h3 class="text-dark fs-4 fw-normal baskerville m-0 px-3 py-2">
+                  {{ programa.nombre }}
+                </h3>
+              </div>
             </div>
+            <div class="bg-light rounded-3 shadow"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#programasCarousel" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Anterior</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#programasCarousel" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Siguiente</span>
+  </button>
 </div>
 
 <div class="container-fluid py-5">
-    <div class="container-xxl d-flex justify-content-center">
-        <button type="button" class="btn btn-primary px-5" style="background-color: #851819;">Ver calendario académico</button>
-    </div>
+  <div class="container-xxl d-flex justify-content-center">
+    <button type="button" class="btn btn-primary px-5" style="background-color: #851819;">Ver calendario académico</button>
+  </div>
 </div>
