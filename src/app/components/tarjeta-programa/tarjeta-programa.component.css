@@ -2,6 +2,10 @@
   border: none;
 }
 
+.cardsinborde{
+  border: none;
+}
+
 .imgcardprograma{
     width: 100%;
     height: 200px;
@@ -40,6 +44,7 @@
 .resumenprograma{
     font-weight: 200;
     font-size: small;
+    min-height: 80px;
 }
 
 .btnprograma {
@@ -51,4 +56,8 @@
 .btnprograma:hover {
     background-color: #A52A2A;
     border-color: #A52A2A;
+}
+
+.ceus {
+    font-style: italic;
 }
