@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { ApiProgramasService } from '../../Services/api-programas.service';
 
 @Component({
   selector: 'app-tarjeta-programa',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './tarjeta-programa.component.html',
   styleUrl: './tarjeta-programa.component.css'
 })
@@ -44,4 +45,14 @@ filtrarProgramas() {
     return cumpleArea && cumpleTipo && cumpleModalidad;
   });
 }
+
+generarSlug(nombre: string): string {
+  return nombre
+    .toLowerCase()
+    .normalize("NFD") // elimina acentos
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, '-')
+    .replace(/[^\w\-]+/g, '');
+}
+
 }

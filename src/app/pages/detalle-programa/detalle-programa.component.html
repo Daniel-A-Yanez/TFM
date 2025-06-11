@@ -1,1 +1,8 @@
-<p>detalle-programa works!</p>
+<div *ngIf="programa" class="container py-5">
+  <h1>{{ programa.nombre }}</h1>
+  <h4>{{ programa.tipoprograma }} - {{ programa.modalidad }}</h4>
+  <p><strong>Fecha de inicio:</strong> {{ programa.fechainicio | date }}</p>
+  <p><strong>Duración:</strong> {{ programa.duracion }} ({{ programa.ceus }} CEUs)</p>
+  <p>{{ programa.resumen }}</p>
+  <img [src]="programa.imagen" class="img-fluid rounded mt-3" alt="{{ programa.nombre }}" />
+</div>

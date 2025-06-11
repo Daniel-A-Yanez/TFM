@@ -41,7 +41,10 @@
             <p class="resumenprograma">{{ programa.resumen}}</p>
           </div>
           <div>
-            <button class="btn btn-primary btnprograma baskerville">Ver Programa</button>
+            <a class="btn btn-primary btnprograma"
+   [routerLink]="['/programa', generarSlug(programa.nombre)]">
+   Ver Programa
+</a>
           </div>
         </div>
       </div>
