@@ -5,3 +5,7 @@ body {
 .baskerville {
   font-family: 'Baskervville', serif !important;
 }
+
+.color_white {
+  color: white !important;
+}

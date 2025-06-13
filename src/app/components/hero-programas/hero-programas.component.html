@@ -1,0 +1,12 @@
+<div class="my-0" style="background-image: url(/assets/images/Hero_programas_abiertos.jpg); background-size: cover; background-position: top; height: 60vh;">
+<div class="background-overlay d-flex align-items-center" style="background-color: rgba(0, 0, 0, 0.3); height: 100%;">  
+    <div class="container-xl">
+    <h4 class="fs-6 color_white baskerville">{{ programa.tipoprograma }} - {{ programa.modalidad }}</h4>
+    <h1 class="display-5 fw-bold color_white baskerville ">{{ programa.nombre }}</h1>
+    <h5 class="color_white baskerville"><strong>Fecha de inicio:</strong> {{ programa.fechainicio | date:'EEEE d MMMM y' }}</h5>
+    <div>
+    <p class="color_white baskerville">{{ programa.duracion }} <br/> ({{ programa.ceus }} Unidades de Educación Continua CEUs)</p>
+    </div>
+    </div>
+</div>
+</div> 
