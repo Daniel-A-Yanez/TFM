@@ -1,0 +1,44 @@
+.tipo_programa {
+  font-size: 1.8rem !important;
+  font-weight: 100 !important;
+}
+
+.shadow_programa {
+  text-shadow: 0.1rem 0.1rem 0.2rem rgba(0, 0, 0, 0.5) !important;
+}
+
+.titulo_programa {
+  font-size: 3.5rem !important;
+  font-weight: 300 !important;
+  text-transform: uppercase !important;
+
+}
+
+.fecha_programa {
+  font-size: 2.0rem !important;
+  font-weight: 100 !important;
+}
+
+.hora_programa {
+  font-size: 2.2rem !important;
+  font-weight: 500 !important;
+  line-height: 3.2rem !important;
+}
+
+.ceus_programa {
+  font-size: 1.4rem !important;
+  font-weight: 100 !important;
+  line-height: 1.4rem !important;
+}
+
+.inversion{
+  font-size: 1.6rem !important;
+  font-weight: 100 !important;
+  line-height: 1.6rem !important;
+}
+
+.precio_programa {
+  font-size: 1.4rem !important;
+  font-weight: 400 !important;
+  line-height: 1.4rem !important;
+}
