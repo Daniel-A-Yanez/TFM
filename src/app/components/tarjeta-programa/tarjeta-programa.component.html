@@ -42,9 +42,9 @@
           </div>
           <div>
             <a class="btn btn-primary btnprograma"
-   [routerLink]="['/programa', generarSlug(programa.nombre)]">
+   [routerLink]="['/programa', generarSlug(programa.nombre) + '-' + programa.id]">
    Ver Programa
-</a>
+            </a>
           </div>
         </div>
       </div>

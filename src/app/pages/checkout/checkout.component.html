@@ -1,38 +1,42 @@
-    <div class="container">
+  <div class="container-fluid">
+       
+    <div class="container-xl">
       <div class="py-5 text-center">
         <h1 class="baskerville">Inscripción y pago</h1>
       </div>
-    </div>
-    
-    <div class="container">
+
       <div class="row">
-        
+        <!-- Comienza bloque derecho tu carrito -->
         <div class="col-md-4 order-2">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
             <span class=text-muted>Tu carrito</span>
             <span class="badge rounded-pill bg-secondary">{{ programasCarrito.length }}</span>
           </h4>
           
-          <div class="card" *ngFor="let programa of programasCarrito">
+          <div class="card mb-2" *ngFor="let programa of programasCarrito">
             <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <img [src]="programa.imagen" class="img-thumbnail" alt="{{ programa.nombre }}" style="width: 80px; height: 80px;">
-                <h6 class="my-0">{{ programa.nombre }}</h6>
-                <small class="text-muted">{{ programa.tipoprograma }} - {{ programa.modalidad }}</small>
+            <div class="row g-0">
+              <div class="col-md-4 p-2">
+                <img [src]="programa.imagen" class="img-fluid rounded" alt="{{ programa.nombre }}">
               </div>
-              <span class="text-muted">${{ programa.costo }}</span>
-            </li>
             
+              <div class="col-md-8 p-2 align-content-center">
+                <h6 class="my-0 baskerville fs-5">{{ programa.nombre }}</h6>
+                <span class="text-muted">${{ programa.costo }}</span>
+              </div>
+            
+            </div>
+            </li>
           </div>
           
-          <div class="card-footer d-flex justify-content-between">
+          <div class="card-footer d-flex justify-content-between mt-3 mb-3 p-2">
             <span>Total (USD)</span>
             <strong>${{ total }}</strong>
           </div>
           
           <form class="card p-2">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Promo code">
+              <input type="text" class="form-control" placeholder="Código promoción">
               <div class="input-group-append">
                 <button type="submit" class="btn btn-secondary">
                  Enviar
@@ -40,137 +44,148 @@
               </div>
             </div>
           </form>
-          
         </div>
-         
+         <!-- Termina bloque derecho tu carrito -->
+
+        <!-- Empieza bloque izquierdo datos facturación, participante y pago -->
+
         <div class="col-md-8 order-1">
-          <h4 class="mb-3 baskerville">Dirección de facturación</h4>
+          <h4 class="mb-3 baskerville">Datos de facturación</h4>
           <div class="row">
             <div class="col mb-4">
               <input type="text" class="form-control baskerville" placeholder="Nombre" aria-label="nombre">
             </div>
             <div class="col mb-4">
-              <input type="text" class="form-control" placeholder="Apellido" aria-label="Apellido">
+              <input type="text" class="form-control baskerville" placeholder="Apellido" aria-label="Apellido">
             </div>
           </div>
-          
-          <div class="input-group col mb-4">
-            <div class="input-group-text">N</div>
-            <input type="text" class="form-control" placeholder="Username">
-          </div>
-          
-          <div class="mb-4">
-            <input type="text" class="form-control" placeholder="Correo electrónico" aria-label="email">
-        </div>
           
           <div class="row">
-             <div class="col">
-              <label for="country">País</label>
-              <select class="form-select">
-                <option selected>Escoge...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+            <div class="col mb-4">
+              <input type="tel" class="form-control baskerville" placeholder="Celular" aria-label="celular">
+            </div>
+            <div class="col mb-4">
+              <input type="text" class="form-control baskerville" placeholder="Correo electrónico" aria-label="email">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <label for="country" class="baskerville">País</label>
+              <select class="form-select" [(ngModel)]="paises">
+                <option value="" disabled selected>Escoge..</option>
+                <option *ngFor="let pais of paises" [value]="pais.name">{{ pais.name }}</option>
               </select>
             </div>
-             <div class="col">
-              <label for="state">Estado</label>
-              <select class="form-select">
-                <option selected>Choose...</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </select>
+            <div class="col">
+              <label for="state" class="baskerville">Estado</label>
+              <input type="text" class="form-control" aria-label="estado">
             </div>
-             <div class="col mb-4">
-              <label for="zip">Zip Code</label>
+            <div class="col mb-4">
+              <label for="zip" class="baskerville">Código postal</label>
               <input type="text" class="form-control" aria-label="zip">
             </div>
-          <div class="mb-4">
-            <input type="text" class="form-control" placeholder="Dirección" aria-label="Direccion">
+            <div class="mb-4">
+              <input type="text" class="form-control baskerville" placeholder="Dirección" aria-label="Direccion">
+            </div>
           </div>
+            
             <hr class="mb-4">
             
             <div class="form-check">
               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
               <label class="form-check-label" for="flexCheckDefault">
-                Shipping address is the same as my billing address
+                Quiero usar los mismos datos de facturación para datos de participante.
               </label>
             </div>
-            
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
-              <label class="form-check-label" for="flexCheckChecked">
-                Save this information for next time
-              </label>
+
+            <hr class="mt-4 mb-4">
+
+          <div class="container" *ngFor="let programa of programasCarrito">
+          
+          <div class="row">
+            <h4 class="mb-3 baskerville">Datos de participante para {{programa.nombre}}</h4>
+            <div class="col mb-4">
+              <input type="text" class="form-control baskerville" placeholder="Nombre" [attr.aria-label]="'nombre_pax_' + programa.id">
             </div>
-            
-            <hr class="mb-4">
-            
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-              <label class="form-check-label" for="flexRadioDefault1">
-                Credit card (Default)
-              </label>
+            <div class="col mb-4">
+              <input type="text" class="form-control baskerville" placeholder="Apellido" [attr.aria-label]="'apellido_pax_' + programa.id">
             </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-              <label class="form-check-label" for="flexRadioDefault2">
-                Debit card
-              </label>
+          </div>
+          <div class="row">
+            <div class="col mb-4">
+              <input type="text" class="form-control baskerville" placeholder="Cargo" [attr.aria-label]="'cargo_pax_' + programa.id">
             </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3">
-              <label class="form-check-label" for="flexRadioDefault3">
-                Paypal
-              </label>
+            <div class="col mb-4">
+              <input type="text" class="form-control baskerville" placeholder="Empresa" [attr.aria-label]="'empresa_pax_' + programa.id">
             </div>
-            
-            <div class="row">
+          </div>
+           <div class="row">
+            <div class="col mb-4">
+              <input type="tel" class="form-control baskerville" placeholder="Celular" [attr.aria-label]="'celular_pax_' + programa.id">
+            </div>
+            <div class="col mb-4">
+              <input type="email" class="form-control baskerville" placeholder="Correo electrónico" [attr.aria-label]="'correo_pax_' + programa.id">
+            </div>
+          </div>
+
+          </div>
+
+            <hr class="mt-4 mb-4">
+
+            <div class="row mt-2 mb-4">
+              <h4 class="mb-3 baskerville">Datos de tarjeta de crédito</h4>
+
+            </div>
+
+            <div class="row mt-2 mb-2">
               <div class="col mb-4">
                 <label for="Card1">
-                  Name on card
+                  Nombre
                 </label>
                 <input type="text" class="form-control"aria-label="card1">
                 <small class="text-muted">
-                  Full name, as displayed on the card
+                  Nombre completo, como consta en la tarjeta.
                 </small>
               </div>
               
               <div class="col mb-4">
-                <label for="Card2">
-                  Credit card Nummber
+                <label for="Tarjeta">
+                  Número de tarjeta
                 </label>
-                <input type="text" class="form-control" placeholder="1234-5678-9012" aria-label="Card2">
+                <input type="text" class="form-control" placeholder="1234-5678-9012" aria-label="Tarjeta">
               </div>
             </div>
             
             <div class="row">
               <div class="col mb-3">
                 <label for="Card3">
-                  Expiry Date
+                  Fecha de expiración
                 </label>
                 <input type="text" class="form-control"aria-label="card3">
               </div>
               
               <div class="col mb-3">
                 <label for="Card4">
-                  CVV
+                  Código CVV
                 </label>
                 <input type="text" class="form-control"  aria-label="Card4">
               </div>
             </div>
             
-          </div>
-        
-        <hr class="mb-4">
+             <hr class="mb-4">
         
         <div class="d-grid gap-2">
-          <button class="btn btn-primary btn-lg" type="button">
-            Continue to Checkout
+          <button class="btn btn-primary btn-lg" type="button" (click)="verificarTarjeta()">
+            Realizar Pago
           </button>
         </div>
+
+          </div>
+        
+       
         
       </div>
-    </div>
+
   </div>
+</div>

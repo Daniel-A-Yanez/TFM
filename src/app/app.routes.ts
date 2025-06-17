@@ -5,12 +5,14 @@ import { ProgramasAbiertosComponent } from './pages/programas-abiertos/programas
 import { MenuComponent } from './components/menu/menu.component';
 import { DetalleProgramaComponent } from './pages/detalle-programa/detalle-programa.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { GraciasComponent } from './pages/gracias/gracias.component';
 
 
 export const routes: Routes = [
     {path: '', component: InicioComponent},
     {path: 'inicio', component: InicioComponent},
     {path: 'programas-abiertos', component: ProgramasAbiertosComponent},
-    {path: 'programa/:slug', component: DetalleProgramaComponent},
-    {path: 'checkout', component: CheckoutComponent}
+    {path: 'programa/:slugId', component: DetalleProgramaComponent},
+    {path: 'checkout', component: CheckoutComponent},
+    {path: 'gracias', component: GraciasComponent}
 ];

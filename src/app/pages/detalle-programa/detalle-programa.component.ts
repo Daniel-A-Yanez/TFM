@@ -25,14 +25,18 @@ export class DetalleProgramaComponent implements OnInit, AfterViewInit {
   ) {}
 
 ngOnInit(): void {
-  const slug = this.route.snapshot.paramMap.get('slug');
-  console.log('Slug en URL:', slug);
-  this.api.obtenerProgramas().subscribe(programas => {
-    console.log('Programas obtenidos:', programas);
-    this.programa = programas.find(p => this.slugify(p.nombre) === slug);
-    console.log('Programa encontrado:', this.programa);
-  });
+  const slugId = this.route.snapshot.paramMap.get('slugId');
+  if (slugId) {
+    const id = slugId.split('-').pop();
+    console.log('ID extraído:', id);
+
+    this.api.obtenerProgramas().subscribe(programas => {
+      this.programa = programas.find(p => p.id === id);
+      console.log('Programa encontrado:', this.programa);
+    });
+  }
 }
+
 
 ngAfterViewInit(): void {
   setTimeout(() => {
@@ -51,9 +55,16 @@ ngAfterViewInit(): void {
 
   irACheckout(): void {
     if (this.programa) {
-      localStorage.setItem('carrito', JSON.stringify([this.programa]));
+      const carritoActual = JSON.parse(localStorage.getItem('carrito') || '[]');
+      const yaExiste = carritoActual.some((p: any) => p.id === this.programa.id);
+      if (!yaExiste) {
+        carritoActual.push(this.programa);
+        localStorage.setItem('carrito', JSON.stringify(carritoActual));
+        console.log('Programa agregado al carrito:', this.programa);
+      } else {
+        console.log('El programa ya está en el carrito');
+      }
       this.router.navigate(['/checkout']);
-      console.log('Programa agregado al carrito:', this.programa);
     }
   }
 }
