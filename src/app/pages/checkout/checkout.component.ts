@@ -42,6 +42,13 @@ export class CheckoutComponent implements OnInit {
     return total;
   }
 
+  eliminarPrograma(id: string): void {
+    this.programasCarrito = this.programasCarrito.filter(p => p.id !== id);
+    localStorage.setItem('carrito', JSON.stringify(this.programasCarrito));
+    this.total = this.getTotal();
+  }
+
+
   realizarPago() {
     if (this.programasCarrito.length === 0) {
       alert('Tu carrito está vacio');
