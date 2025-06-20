@@ -15,7 +15,6 @@
   <select class="form-select" [(ngModel)]="filtros.modalidad" (change)="filtrarProgramas()">
     <option value="">Todas las modalidades</option>
     <option *ngFor="let m of modalidades" [value]="m">{{ m }}
-
     </option>
   </select>
   </div>

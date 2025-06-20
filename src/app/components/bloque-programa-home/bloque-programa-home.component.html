@@ -6,7 +6,7 @@
 
 <div id="programasCarousel" class="carousel slide container-xxl px-5 py-2" data-bs-ride="carousel" data-bs-interval="5000">
   <div class="carousel-inner">
-    <div class="carousel-item" *ngFor="let grupo of dividirEnGrupos(programas, 3); let i = index" [class.active]="i === 0">
+    <div class="carousel-item z-3" *ngFor="let grupo of dividirEnGrupos(programas, 3); let i = index" [class.active]="i === 0">
       <div class="row">
         <div class="col-md-4 mt-2 mb-2" *ngFor="let programa of grupo">
           <div id="component" class="d-grid justify-content-center">
@@ -29,6 +29,7 @@
                   {{ programa.nombre }}
                 </h3>
               </div>
+              <app-boton-ir-programa [programa]="programa"></app-boton-ir-programa>
             </div>
             <div class="bg-light rounded-3 shadow"></div>
           </div>
@@ -36,11 +37,11 @@
       </div>
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#programasCarousel" data-bs-slide="prev">
+  <button class="carousel-control-prev z-0" type="button" data-bs-target="#programasCarousel" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Anterior</span>
   </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#programasCarousel" data-bs-slide="next">
+  <button class="carousel-control-next z-0" type="button" data-bs-target="#programasCarousel" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Siguiente</span>
   </button>

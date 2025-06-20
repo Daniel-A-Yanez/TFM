@@ -1,0 +1,8 @@
+.itemsinllenar {
+    color: red !important;
+    border-color: red !important;
+}
+
+.itemsinllenar::placeholder {
+    color: red !important;
+}

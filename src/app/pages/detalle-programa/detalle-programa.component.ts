@@ -39,6 +39,10 @@ ngOnInit(): void {
 
 
 ngAfterViewInit(): void {
+  // Hacer scroll al inicio
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+
+
   setTimeout(() => {
     if (this.cronogramaContainer) {
       const script = this.renderer.createElement('script');

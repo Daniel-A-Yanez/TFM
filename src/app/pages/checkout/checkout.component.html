@@ -9,7 +9,7 @@
         <!-- Comienza bloque derecho tu carrito -->
         <div class="col-md-4 order-2">
           <h4 class="d-flex justify-content-between align-items-center mb-3">
-            <span class=text-muted>Tu carrito</span>
+            <span class="text-muted baskerville">Tu carrito</span>
             <span class="badge rounded-pill brandbackground">{{ programasCarrito.length }}</span>
           </h4>
           
@@ -31,28 +31,50 @@
             </div>
             </li>
           </div>
+
+        <!-- Bloque de total y descuento -->
           
-          <div class="card-footer d-flex justify-content-between mt-3 mb-3 p-2">
+          <div class="card d-flex  mt-3 mb-3 p-2">
+            <div class="container-fluid d-flex justify-content-between">
+            <span>Subtotal (USD)</span>
+            <strong>${{ subtotal }}</strong>
+            </div>
+            <hr class="mb-1 mt-1">
+            <div *ngIf="descuentoYaAplicado" class="container-fluid d-flex justify-content-between">
+              <span>Descuento {{this.descuentocarrito.codigo}}:</span>
+              <strong>${{ totaldescuento }}</strong>
+            </div>
+            <hr *ngIf="descuentoYaAplicado" class="mb-1 mt-1">
+            <div class="container-fluid d-flex justify-content-between">
             <span>Total (USD)</span>
             <strong>${{ total }}</strong>
+            </div>
           </div>
           
-          <form class="card p-2">
+          <form *ngIf="!descuentoYaAplicado" class="card p-2">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Código promoción">
+              <input type="text" class="form-control" placeholder="Código promoción" aria-label="Descuento">
               <div class="input-group-append">
-                <button type="submit" class="btn btn-secondary brandbackground rounded-start-0">
+                <button type="submit" class="btn btn-secondary brandbackground rounded-start-0" (click)="aplicardescuento()">
                  Enviar
                 </button>
               </div>
             </div>
           </form>
+
+          <div *ngIf="descuentoYaAplicado" class="container">
+            <button type="submit" class="btn btn-secondary brandbackground rounded border-0" (click)="eliminardescuento()">
+                 Eliminar descuento
+            </button>
+          </div>
+
+
         </div>
          <!-- Termina bloque derecho tu carrito -->
 
         <!-- Empieza bloque izquierdo datos facturación, participante y pago -->
 
-        <div class="col-md-8 order-1">
+        <div *ngIf="this.programasCarrito.length > 0" class="col-md-8 order-1">
           <h4 class="mb-3 baskerville">Datos de facturación</h4>
           <div class="row">
             <div class="col mb-4">
@@ -75,7 +97,7 @@
           <div class="row">
             <div class="col">
               <label for="country" class="baskerville">País</label>
-              <select class="form-select" [(ngModel)]="paises">
+              <select class="form-select" id="pais-select" [(ngModel)]="paises">
                 <option value="" disabled selected>Escoge..</option>
                 <option *ngFor="let pais of paises" [value]="pais.name">{{ pais.name }}</option>
               </select>
@@ -92,15 +114,6 @@
               <input type="text" class="form-control baskerville" placeholder="Dirección" aria-label="Direccion">
             </div>
           </div>
-            
-            <hr class="mb-4">
-            
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-              <label class="form-check-label" for="flexCheckDefault">
-                Quiero usar los mismos datos de facturación para datos de participante.
-              </label>
-            </div>
 
             <hr class="mt-4 mb-4">
 
@@ -185,6 +198,12 @@
         </div>
 
           </div>
+        
+        <div *ngIf="this.programasCarrito.length === 0" class="col-md-8 order-1 align-content-center text-center">
+          <h2 class="fs-5 baskerville mb-4">No tienes nada en tu carrito, agregar un programa a tu carrito</h2>
+          <a routerLink="/programas-abiertos" class="btn btn-primary btn-lg brandbackground border-0">Buscar un programa</a>
+
+        </div>
         
        
         

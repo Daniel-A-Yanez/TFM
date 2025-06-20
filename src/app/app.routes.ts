@@ -8,6 +8,7 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { GraciasComponent } from './pages/gracias/gracias.component';
 
 
+
 export const routes: Routes = [
     {path: '', component: InicioComponent},
     {path: 'inicio', component: InicioComponent},

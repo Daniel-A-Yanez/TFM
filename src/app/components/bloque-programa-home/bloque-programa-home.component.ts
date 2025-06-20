@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiProgramasService } from '../../Services/api-programas.service';
+import { BotonIrProgramaComponent } from "../boton-ir-programa/boton-ir-programa.component";
 
 @Component({
   selector: 'app-bloque-programa-home',
   standalone: true, 
-  imports: [CommonModule],
+  imports: [CommonModule, BotonIrProgramaComponent],
   templateUrl: './bloque-programa-home.component.html',
   styleUrl: './bloque-programa-home.component.css'
 })
