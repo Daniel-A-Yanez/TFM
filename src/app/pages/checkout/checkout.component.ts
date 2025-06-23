@@ -6,12 +6,14 @@ import { ListapaisesService } from '../../Services/listapaises.service';
 import { FormsModule } from '@angular/forms';
 import { ApiDescuentosService } from '../../Services/api-descuentos.service';
 import { RouterModule } from '@angular/router';
+import { CarritoService } from '../../Services/carrito.service';
+import { CrearArrayPipe } from '../../Pipes/crear-array.pipe';
 
 
 @Component({
   selector: 'app-checkout',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule, CrearArrayPipe],
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
@@ -27,11 +29,17 @@ export class CheckoutComponent implements OnInit {
 
   constructor(private router: Router, 
     private ListapaisesService: ListapaisesService, 
-    private ApiDescuentosService: ApiDescuentosService) {}
+    private ApiDescuentosService: ApiDescuentosService,
+    private carritoService: CarritoService) {}
 
 
   ngOnInit(): void {
-    this.programasCarrito = this.getProgramasFromStorage();
+    this.carritoService.carrito$.subscribe(carrito => {
+      this.programasCarrito = carrito;
+      this.total = this.getTotal();
+      this.subtotal = this.total;
+      this.aplicarDescuentoDesdeStorage();
+    });
     this.paises = this.ListapaisesService.obtenerPaises();
     
     this.ApiDescuentosService.obtenerDecuentos().subscribe((data) => {
@@ -39,15 +47,9 @@ export class CheckoutComponent implements OnInit {
     console.log('Descuentos obtenidos:', this.descuentos);
       });
 
-    console.log('Programas en el carrito:', this.programasCarrito);
     console.log('Paises:', this.paises);
-
-    this.total = this.getTotal();
-    this.subtotal = this.total;
-    //this.totaldescuento = this.getTotalDescuentoFromStorage();
-    this.descuentocarrito = this.getDescuentoFromStorage();
-    console.log ('Descuento en carrito:', this.descuentocarrito);
-    this.aplicarDescuentoDesdeStorage();
+    console.log('Programas en carrito:', this.programasCarrito);
+    console.log(`Total: ${this.total} Subtotal: ${this.subtotal}`)
   }
 
   getProgramasFromStorage(): any[] {
@@ -60,36 +62,31 @@ export class CheckoutComponent implements OnInit {
     return descuentostorage ? JSON.parse(descuentostorage): [];
   }
 
-  //getTotalDescuentoFromStorage() {
-  //  const descuento = sessionStorage.getItem('descuentousado');
-  //  if (descuento !== null && !isNaN(parseFloat(descuento))) {
-  //    const descuentonum = parseFloat(descuento);
-  //    console.log ('Descuento en storage:', descuentonum );
-  //    this.descuentoYaAplicado = true;
-  //    return descuentonum;
-  //  }
-    
-  //  if (descuento === null) {
-  //  console.log ('No hay descuento guardado en storage');
-  //  return 0;
-  //  }
-
-  //  return 0;
- // }
-
   getTotal(): number {
-    const total = this.programasCarrito.reduce((sum, programa) => {
-      const costo = parseFloat(programa.costo?.toString().replace('.', '')) || 0;
-      return sum + costo;
+    return this.programasCarrito.reduce((sum, programa) => {
+      const costo = parseFloat(programa.programa?.costo?.toString().replace(/\./g, '')) || 0;
+      return sum + (costo * (programa.cantidad || 1));
     }, 0);
-    console.log('Total calculado:', total);
-    return total;
   }
+
+  generarSlug(nombre: string): string {
+    return nombre
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .replace(/\s+/g, '-')
+      .replace(/[^\w\-]+/g, '');
+  }
+
   
 // Función para aplicar descuentos //
 
+//Aplica un descuento guardado al regresar al carrito
+
 aplicarDescuentoDesdeStorage() {
   const objetostorage = Object.keys(this.descuentocarrito).length;
+
+  //si hay un item en el carrito y hay descuento en memoria pero no está aplicado, calcula el descuento
 
   if (objetostorage > 0 && !this.descuentoYaAplicado) {
     this.descuentoYaAplicado = true;
@@ -98,7 +95,24 @@ aplicarDescuentoDesdeStorage() {
     this.total -= descuentoAplicado;
     return;
   }
+
+  // si hay un item en el carrito y el descuento ya está aplicado, calcula otra vez el descuento
+
+  if (objetostorage > 0 && this.descuentoYaAplicado) {
+    const descuentoAplicado = this.total * (this.descuentocarrito.descuento / 100);
+    this.totaldescuento = descuentoAplicado;
+    this.total -= descuentoAplicado;
+  }
+
+  //Si el carrito está vacío eliminia todos los descuentos
+
+  if (this.programasCarrito.length === 0 && this.descuentoYaAplicado) {
+    this.eliminardescuento();
+  }
 }
+
+
+// Aplica el descuento al presionar el botón
 
 aplicardescuento() {
   if (this.descuentoYaAplicado) {
@@ -144,16 +158,17 @@ aplicardescuento() {
 
   }
 
-
-  // Eliminar programas del carrito //
- 
+  // Eliminar programas del carrito // 
 
   eliminarPrograma(id: string): void {
-    this.programasCarrito = this.programasCarrito.filter(p => p.id !== id);
-    localStorage.setItem('carrito', JSON.stringify(this.programasCarrito));
-    this.total = this.getTotal();
+    this.carritoService.eliminarProgramaPorId(id);
   }
 
+  agregarPrograma(programa: any): void {
+    this.carritoService.agregarPrograma(programa);
+  }
+
+  //Vertifica que los campos estén completos y realiza el pago
 
   realizarPago() {
 
@@ -163,13 +178,17 @@ aplicardescuento() {
 
     const programasencarrito = this.programasCarrito;
     programasencarrito.forEach(programa => {
-      camposRequeridos.push('nombre_pax_' + programa.id);
-      camposRequeridos.push('apellido_pax_' + programa.id);
-      camposRequeridos.push('cargo_pax_' + programa.id);
-      camposRequeridos.push('empresa_pax_' + programa.id);
-      camposRequeridos.push('celular_pax_' + programa.id);
-      camposRequeridos.push('correo_pax_' + programa.id);
-    });  
+      for (let i = 0; i < programa.cantidad; i++) {
+        const id = programa.programa?.id;
+        camposRequeridos.push(`nombre_pax_${id}_${i}`);
+        camposRequeridos.push(`apellido_pax_${id}_${i}`);
+        camposRequeridos.push(`cargo_pax_${id}_${i}`);
+        camposRequeridos.push(`empresa_pax_${id}_${i}`);
+        camposRequeridos.push(`celular_pax_${id}_${i}`);
+        camposRequeridos.push(`correo_pax_${id}_${i}`);
+      }
+    });
+    console.log('Campos requeridos:', camposRequeridos);
 
     let hayCamposVacios = false;
 
@@ -215,7 +234,7 @@ aplicardescuento() {
     localStorage.setItem('nombre', nombre);
     localStorage.setItem('programa', programa);
 
-    localStorage.removeItem('carrito');
+    this.carritoService.vaciarCarrito();
     this.programasCarrito = [];
     this.total = 0;
 
@@ -270,4 +289,3 @@ aplicardescuento() {
   }
 
 }
-

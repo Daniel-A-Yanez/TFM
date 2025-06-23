@@ -13,22 +13,34 @@
             <span class="badge rounded-pill brandbackground">{{ programasCarrito.length }}</span>
           </h4>
           
-          <div class="card mb-2" *ngFor="let programa of programasCarrito">
+          <div class="card mb-2" *ngFor="let item of programasCarrito">
             <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div class="row g-0">
-              <div class="col-md-4 p-2">
-                <img [src]="programa.imagen" class="img-fluid rounded" alt="{{ programa.nombre }}">
+              <div class="row g-0">
+                <div class="col-md-4 p-2">
+                  <img [src]="item.programa.imagen" class="img-fluid rounded" alt="{{ item.programa.nombre }}">
+                </div>
+                <div class="col-md-8 p-2 align-content-center">
+                  <h6 class="my-0 baskerville fs-5">
+                    <a class="brandfontcolor" [routerLink]="['/programa', generarSlug(item.programa.nombre) + '-' + item.programa.id]">
+                      {{ item.programa.nombre }}
+                    </a>
+                  </h6>
+                  <div class="container-fluid d-flex px-0 py-0 my-0 mx-0 justify-content-between">
+                    <div class="container px-0 align-content-center">
+                    <span class="text-muted">${{ item.programa.costo }}</span>
+                    </div>
+                    <div class="container-sm d-flex justify-content-end align-content-center">
+                    <button class="btn btn-sm btn-outline brandfontcolor border-1 border-black my-0" (click)="agregarPrograma(item.programa)">
+                      +
+                    </button>
+                    <div class="container-sm text-center m-0 p-0 align-content-center" style="width: 40px;"><span class="text-muted">{{ item.cantidad }}</span></div>
+                    <button class="btn btn-sm btn-outline brandfontcolor border-1 border-black my-0" (click)="eliminarPrograma(item.programa.id)">
+                      -
+                    </button>
+                    </div>
+                  </div>
+                </div>
               </div>
-            
-              <div class="col-md-8 p-2 align-content-center">
-                <h6 class="my-0 baskerville fs-5">{{ programa.nombre }}</h6>
-                <div class="container-fluid d-flex justify-content-between px-0">
-                <span class="text-muted">${{ programa.costo }}</span>
-                 <button class="btn btn-sm btn-outline ms-2 brandfontcolor border-0" (click)="eliminarPrograma(programa.id)">Eliminar</button>
-                 </div>
-              </div>
-            
-            </div>
             </li>
           </div>
 
@@ -117,33 +129,36 @@
 
             <hr class="mt-4 mb-4">
 
-          <div class="container" *ngFor="let programa of programasCarrito">
-          
-          <div class="row">
-            <h4 class="mb-3 baskerville">Datos de participante para {{programa.nombre}}</h4>
-            <div class="col mb-4">
-              <input type="text" class="form-control baskerville" placeholder="Nombre" [attr.aria-label]="'nombre_pax_' + programa.id">
-            </div>
-            <div class="col mb-4">
-              <input type="text" class="form-control baskerville" placeholder="Apellido" [attr.aria-label]="'apellido_pax_' + programa.id">
-            </div>
-          </div>
-          <div class="row">
-            <div class="col mb-4">
-              <input type="text" class="form-control baskerville" placeholder="Cargo" [attr.aria-label]="'cargo_pax_' + programa.id">
-            </div>
-            <div class="col mb-4">
-              <input type="text" class="form-control baskerville" placeholder="Empresa" [attr.aria-label]="'empresa_pax_' + programa.id">
-            </div>
-          </div>
-           <div class="row">
-            <div class="col mb-4">
-              <input type="tel" class="form-control baskerville" placeholder="Celular" [attr.aria-label]="'celular_pax_' + programa.id">
-            </div>
-            <div class="col mb-4">
-              <input type="email" class="form-control baskerville" placeholder="Correo electrónico" [attr.aria-label]="'correo_pax_' + programa.id">
-            </div>
-          </div>
+            <!--Datos de participante por programa en el carrito-->
+          <div class="container" *ngFor="let item of programasCarrito">
+              
+            <ng-container *ngFor="let i of item.cantidad | crearArray">
+              <div class="row">
+                <h4 class="mb-3 baskerville">Datos de participante para {{item.programa.nombre}} {{ i+1 }}</h4>
+                <div class="col mb-4">
+                  <input type="text" class="form-control baskerville" placeholder="Nombre" [attr.aria-label]="'nombre_pax_' + item.programa.id + '_' + i">
+                </div>
+                <div class="col mb-4">
+                  <input type="text" class="form-control baskerville" placeholder="Apellido" [attr.aria-label]="'apellido_pax_' + item.programa.id + '_' + i">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col mb-4">
+                  <input type="text" class="form-control baskerville" placeholder="Cargo" [attr.aria-label]="'cargo_pax_' + item.programa.id + '_' + i">
+                </div>
+                <div class="col mb-4">
+                  <input type="text" class="form-control baskerville" placeholder="Empresa" [attr.aria-label]="'empresa_pax_' + item.programa.id + '_' + i">
+                </div>
+              </div>
+              <div class="row">
+                <div class="col mb-4">
+                  <input type="tel" class="form-control baskerville" placeholder="Celular" [attr.aria-label]="'celular_pax_' + item.programa.id + '_' + i">
+                </div>
+                <div class="col mb-4">
+                  <input type="email" class="form-control baskerville" placeholder="Correo electrónico" [attr.aria-label]="'correo_pax_' + item.programa.id + '_' + i">
+                </div>
+              </div>
+            </ng-container>
 
           </div>
 
@@ -156,7 +171,7 @@
 
             <div class="row mt-2 mb-2">
               <div class="col mb-4">
-                <label for="Card1">
+                <label for="Card1" class="baskerville">
                   Nombre
                 </label>
                 <input type="text" class="form-control"aria-label="card1">
@@ -166,7 +181,7 @@
               </div>
               
               <div class="col mb-4">
-                <label for="Tarjeta">
+                <label for="Tarjeta" class="baskerville">
                   Número de tarjeta
                 </label>
                 <input type="text" class="form-control" placeholder="1234-5678-9012" aria-label="Tarjeta">
@@ -175,17 +190,17 @@
             
             <div class="row">
               <div class="col mb-3">
-                <label for="Card3">
+                <label for="Card3" class="baskerville">
                   Fecha de expiración
                 </label>
                 <input type="text" class="form-control"aria-label="card3">
               </div>
               
               <div class="col mb-3">
-                <label for="Card4">
+                <label for="CVV" class="baskerville">
                   Código CVV
                 </label>
-                <input type="text" class="form-control"  aria-label="Card4">
+                <input type="text" class="form-control"  aria-label="CVV">
               </div>
             </div>
             

@@ -15,7 +15,16 @@
                 <li><a href="#" class="nav-link px-2 link-body-emphasis">Investigación</a></li>
                 <li><a href="#" class="nav-link px-2 link-body-emphasis">Artículos</a></li>
                 <li><a href="#" class="nav-link px-2 link-body-emphasis">USFQ</a></li>
-                </ul> 
+                </ul>
+
+            <div class="position-relative ms-3">
+              <a routerLink="/checkout" class="nav-link px-2 link-body-emphasis">
+                🛒
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  {{ totalEnCarrito }}
+                </span>
+              </a>
+            </div>
         </div> 
     </div>
 </div> 

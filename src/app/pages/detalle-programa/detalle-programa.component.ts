@@ -5,6 +5,7 @@ import { CommonModule} from '@angular/common';
 import { HeroProgramasComponent } from '../../components/hero-programas/hero-programas.component';
 import { ApiProgramasService } from '../../Services/api-programas.service';
 import { FormulariocontactoComponent } from '../../components/formulariocontacto/formulariocontacto.component';
+import { CarritoService } from '../../Services/carrito.service';
 
 @Component({
   selector: 'app-detalle-programa',
@@ -21,7 +22,8 @@ export class DetalleProgramaComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private api: ApiProgramasService,
     private renderer: Renderer2,
-    private router: Router
+    private router: Router,
+    private carritoService: CarritoService
   ) {}
 
 ngOnInit(): void {
@@ -58,17 +60,10 @@ ngAfterViewInit(): void {
   }
 
   irACheckout(): void {
-    if (this.programa) {
-      const carritoActual = JSON.parse(localStorage.getItem('carrito') || '[]');
-      const yaExiste = carritoActual.some((p: any) => p.id === this.programa.id);
-      if (!yaExiste) {
-        carritoActual.push(this.programa);
-        localStorage.setItem('carrito', JSON.stringify(carritoActual));
-        console.log('Programa agregado al carrito:', this.programa);
-      } else {
-        console.log('El programa ya está en el carrito');
-      }
-      this.router.navigate(['/checkout']);
+  if (this.programa) {
+    this.carritoService.agregarPrograma(this.programa);
+    console.log('Programa agregado al carrito con servicio:', this.programa);
+    this.router.navigate(['/checkout']);
     }
   }
 }
