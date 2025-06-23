@@ -25,9 +25,10 @@
                       {{ item.programa.nombre }}
                     </a>
                   </h6>
-                  <div class="container-fluid d-flex px-0 py-0 my-0 mx-0 justify-content-between">
+                  <!--Bloque de precio y cantidad-->
+                  <div class="container-fluid d-flex px-0 py-0 my-2 mx-0 justify-content-between">
                     <div class="container px-0 align-content-center">
-                    <span class="text-muted">${{ item.programa.costo }}</span>
+                    <span class="text-muted">${{ (item.programa.costo) * (item.cantidad)  }}</span>
                     </div>
                     <div class="container-sm d-flex justify-content-end align-content-center">
                     <button class="btn btn-sm btn-outline brandfontcolor border-1 border-black my-0" (click)="agregarPrograma(item.programa)">
@@ -90,10 +91,10 @@
           <h4 class="mb-3 baskerville">Datos de facturación</h4>
           <div class="row">
             <div class="col mb-4">
-              <input type="text" class="form-control baskerville" placeholder="Nombre" aria-label="nombre">
+              <input type="text" class="form-control baskerville" placeholder="Nombre" aria-label="nombre" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
             </div>
             <div class="col mb-4">
-              <input type="text" class="form-control baskerville" placeholder="Apellido" aria-label="Apellido">
+              <input type="text" class="form-control baskerville" placeholder="Apellido" aria-label="Apellido" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
             </div>
           </div>
           
@@ -116,7 +117,7 @@
             </div>
             <div class="col">
               <label for="state" class="baskerville">Estado</label>
-              <input type="text" class="form-control" aria-label="estado">
+              <input type="text" class="form-control" aria-label="estado" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
             </div>
             <div class="col mb-4">
               <label for="zip" class="baskerville">Código postal</label>
@@ -136,18 +137,18 @@
               <div class="row">
                 <h4 class="mb-3 baskerville">Datos de participante para {{item.programa.nombre}} {{ i+1 }}</h4>
                 <div class="col mb-4">
-                  <input type="text" class="form-control baskerville" placeholder="Nombre" [attr.aria-label]="'nombre_pax_' + item.programa.id + '_' + i">
+                  <input type="text" class="form-control baskerville" placeholder="Nombre" [attr.aria-label]="'nombre_pax_' + item.programa.id + '_' + i" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
                 </div>
                 <div class="col mb-4">
-                  <input type="text" class="form-control baskerville" placeholder="Apellido" [attr.aria-label]="'apellido_pax_' + item.programa.id + '_' + i">
+                  <input type="text" class="form-control baskerville" placeholder="Apellido" [attr.aria-label]="'apellido_pax_' + item.programa.id + '_' + i" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
                 </div>
               </div>
               <div class="row">
                 <div class="col mb-4">
-                  <input type="text" class="form-control baskerville" placeholder="Cargo" [attr.aria-label]="'cargo_pax_' + item.programa.id + '_' + i">
+                  <input type="text" class="form-control baskerville" placeholder="Cargo" [attr.aria-label]="'cargo_pax_' + item.programa.id + '_' + i" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
                 </div>
                 <div class="col mb-4">
-                  <input type="text" class="form-control baskerville" placeholder="Empresa" [attr.aria-label]="'empresa_pax_' + item.programa.id + '_' + i">
+                  <input type="text" class="form-control baskerville" placeholder="Empresa" [attr.aria-label]="'empresa_pax_' + item.programa.id + '_' + i" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
                 </div>
               </div>
               <div class="row">
@@ -171,10 +172,10 @@
 
             <div class="row mt-2 mb-2">
               <div class="col mb-4">
-                <label for="Card1" class="baskerville">
+                <label for="Nombretarjeta" class="baskerville">
                   Nombre
                 </label>
-                <input type="text" class="form-control"aria-label="card1">
+                <input type="text" class="form-control"aria-label="Nombretarjeta" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
                 <small class="text-muted">
                   Nombre completo, como consta en la tarjeta.
                 </small>
@@ -184,7 +185,7 @@
                 <label for="Tarjeta" class="baskerville">
                   Número de tarjeta
                 </label>
-                <input type="text" class="form-control" placeholder="1234-5678-9012" aria-label="Tarjeta" maxlength="10" pattern="[0-9]{3}">
+                <input type="text" class="form-control" placeholder="1234-5678-9012" aria-label="Tarjeta" maxlength="10" pattern="[0-9]{3}" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
               </div>
             </div>
             
