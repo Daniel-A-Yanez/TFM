@@ -184,23 +184,23 @@
                 <label for="Tarjeta" class="baskerville">
                   Número de tarjeta
                 </label>
-                <input type="text" class="form-control" placeholder="1234-5678-9012" aria-label="Tarjeta">
+                <input type="text" class="form-control" placeholder="1234-5678-9012" aria-label="Tarjeta" maxlength="10" pattern="[0-9]{3}">
               </div>
             </div>
             
             <div class="row">
               <div class="col mb-3">
-                <label for="Card3" class="baskerville">
+                <label for="FechaEX" class="baskerville">
                   Fecha de expiración
                 </label>
-                <input type="text" class="form-control"aria-label="card3">
+                <input type="date" class="form-control"aria-label="card3">
               </div>
               
               <div class="col mb-3">
                 <label for="CVV" class="baskerville">
                   Código CVV
                 </label>
-                <input type="text" class="form-control"  aria-label="CVV">
+                <input type="text" class="form-control" aria-label="CVV" maxlength="3" pattern="[0-9]{3}" inputmode="numeric" title="Debe tener 3 dígitos" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
               </div>
             </div>
             

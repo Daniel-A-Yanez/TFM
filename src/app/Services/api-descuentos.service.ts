@@ -11,6 +11,6 @@ export class ApiDescuentosService {
   private http = inject(HttpClient);
 
   obtenerDecuentos(): Observable<any[]> {
-    return this.http.get<any[]>('http://127.0.0.1:3658/m1/944912-928334-default/Descuentos');
+    return this.http.get<any[]>('https://mock.apidog.com/m1/944912-928334-default/Descuentos');
   }
 }
