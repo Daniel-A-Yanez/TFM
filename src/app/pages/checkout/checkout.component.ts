@@ -26,6 +26,8 @@ export class CheckoutComponent implements OnInit {
   descuentoYaAplicado: boolean = false;
   totaldescuento: number = 0;
   descuentocarrito: any = {};
+  totalEnCarrito: number = 0;
+  
 
   constructor(private router: Router, 
     private ListapaisesService: ListapaisesService, 
@@ -39,6 +41,7 @@ export class CheckoutComponent implements OnInit {
       this.total = this.getTotal();
       this.subtotal = this.total;
       this.aplicarDescuentoDesdeStorage();
+      this.totalEnCarrito = this.carritoService.obtenerTotal();
     });
     this.paises = this.ListapaisesService.obtenerPaises();
     
