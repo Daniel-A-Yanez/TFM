@@ -25,3 +25,13 @@ body {
 .nounderline {
   text-decoration: none !important;
 }
+
+.btnprograma {
+    background-color: #851819 !important;
+    border-color: #851819 !important;
+}
+
+.btnprograma:hover {
+    background-color: #A52A2A !important;
+    border-color: #A52A2A !important;
+}
