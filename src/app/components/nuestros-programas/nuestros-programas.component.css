@@ -1,7 +1,21 @@
 .card_height {
-    height: 400px;
+    width: 300px;
+}
+
+.imgheight {
+    height: 450px;
+    width: auto;
 }
 
 .img_card {
     overflow: hidden;
+    object-fit: cover;
+}
+
+.cardbackground {
+    background-color: #F4F4F4;
+}
+
+.noborder {
+    border: none;
 }

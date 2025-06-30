@@ -1,35 +1,37 @@
 <div class="container-fluid py-5">
   <div class="container-xxl d-flex justify-content-center">
-    <h2 class="baskerville">PRÓXIMOS PROGRAMAS</h2>
+  <p class="baskerville mb-4">Los programas de educación empresarial están dirigidos a profesionales y empresas que valoran el impacto de la  educación permanente e invierten en el desarrollo del talento como  estrategia clave y transversal para su crecimiento y diferenciación.  Ofrecemos una combinación distintiva de programas que conjugan la actualización de conocimientos profesionales en gestión empresarial, con competencias humanas, la aplicabilidad del aprendizaje y el  mejoramiento del desempeño en el contexto empresarial y profesional.</p>
+  </div>
+  <div class="container-xxl d-flex justify-content-center">
+    <h2 class="baskerville mt-2 brandfontcolor">PRÓXIMOS PROGRAMAS</h2>
   </div>
 </div>
 
 <div id="programasCarousel" class="carousel slide container-xxl px-5 py-2" data-bs-ride="carousel" data-bs-interval="5000">
   <div class="carousel-inner">
-    <div class="carousel-item z-3" *ngFor="let grupo of dividirEnGrupos(programas, 3); let i = index" [class.active]="i === 0">
+    <div class="carousel-item z-3" *ngFor="let grupo of dividirEnGrupos(programas, 4); let i = index" [class.active]="i === 0">
       <div class="row">
-        <div class="col-md-4 mt-2 mb-2" *ngFor="let programa of grupo">
+        <div class="col-sm-3 mt-2 mb-2 " *ngFor="let programa of grupo">
           <div id="component" class="d-grid justify-content-center">
-            <div class="d-grid justify-content-center rounded-top-4" style="background-color: #851819;">
+            <div class="d-grid justify-content-center rounded-top-3" style="background-color: #851819;">
               <h4 class="text-light px-2 py-1 my-2 text-center fecha_bloque_programa">
                 {{programa.fechainicio | date: 'longDate'}}
               </h4>
             </div>
             <div class="position-relative">
-              <img [src]="programa.imagen" [alt]="programa.nombre" width="100%" height="100%" class="img-fluid img-carusel">
+              <img [src]="programa.imagen" [alt]="programa.nombre" class="img-fluid img-carusel">
             </div>
-            <div class="justify-content-start rounded-bottom-4 py-3" style="background-color: #F4F4F4;">
+            <div class="justify-content-start rounded-bottom-3 py-3" style="background-color: #F4F4F4;">
               <div class="row text-lg-start px-2">
                 <h4 class="text-dark fs-6 fw-normal baskerville">
                   {{ programa.tipoprograma || 'Curso' }}
                 </h4>
-              </div>
-              <div class="row text-lg-start px-1" style="margin-top: -1rem;">
-                <h3 class="text-dark fs-4 fw-normal baskerville m-0 px-3 py-2">
+                <h3 class="text-dark fs-4 fw-normal baskerville">
                   {{ programa.nombre }}
                 </h3>
+                <app-boton-ir-programa [programa]="programa"></app-boton-ir-programa>
               </div>
-              <app-boton-ir-programa [programa]="programa"></app-boton-ir-programa>
+              
             </div>
             <div class="bg-light rounded-3 shadow"></div>
           </div>
