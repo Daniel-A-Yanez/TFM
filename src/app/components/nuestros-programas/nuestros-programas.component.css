@@ -4,7 +4,8 @@
 
 .imgheight {
     height: 450px;
-    width: auto;
+    overflow: hidden;
+    object-fit: cover;
 }
 
 .img_card {
