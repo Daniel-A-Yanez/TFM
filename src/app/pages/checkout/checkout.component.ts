@@ -264,7 +264,7 @@ aplicardescuento() {
         return;
       }
 
-    fetch('http://127.0.0.1:3658/m1/944912-928334-default/verificartarjeta', {
+    fetch('https://mock.apidog.com/m1/944912-928334-default/verificartarjeta', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ numeroTarjeta })
