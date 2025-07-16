@@ -1,0 +1,12 @@
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(100%); /* blanco */
+}
+
+.carousel-control-prev {
+    justify-content: left !important
+}
+
+.carousel-control-next {
+    justify-content: right !important
+}

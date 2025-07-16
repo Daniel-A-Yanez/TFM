@@ -27,6 +27,8 @@ export class CheckoutComponent implements OnInit {
   totaldescuento: number = 0;
   descuentocarrito: any = {};
   totalEnCarrito: number = 0;
+  public today: Date = new Date();
+  inscritos: any[] = [];
   
 
   constructor(private router: Router, 
@@ -176,7 +178,7 @@ aplicardescuento() {
   realizarPago() {
 
     const camposRequeridos = [
-      'nombre', 'Apellido', 'celular', 'email', 'Direccion', 'estado', 'zip', 'Tarjeta'
+      'nombre', 'apellido', 'celular', 'email', 'direccion', 'estado', 'zip', 'tarjeta','fechaEX'
     ];
 
     const programasencarrito = this.programasCarrito;
@@ -191,6 +193,7 @@ aplicardescuento() {
         camposRequeridos.push(`correo_pax_${id}_${i}`);
       }
     });
+
     console.log('Campos requeridos:', camposRequeridos);
 
     let hayCamposVacios = false;
@@ -202,13 +205,14 @@ aplicardescuento() {
         hayCamposVacios = true;
       } else {
         input.classList.remove('itemsinllenar');
+        this.inscritos.push({ campo, input: input.value.trim() });
+        console.log(`Campo ${campo} completado con valor:`, input.value.trim());
       }
     }
 
-    const pais = (document.getElementById('pais-select') as HTMLSelectElement)?.value;
-    
+  const pais = (document.getElementById('pais-select') as HTMLSelectElement)?.value;
 
-   const paisSelect = document.getElementById('pais-select');
+  const paisSelect = document.getElementById('pais-select');
 
     if (!pais || pais === '') {
     paisSelect?.classList.add('itemsinllenar');
@@ -235,7 +239,13 @@ aplicardescuento() {
     const programa = this.programasCarrito[0]?.nombre || '';
 
     localStorage.setItem('nombre', nombre);
-    localStorage.setItem('programa', programa);
+    localStorage.setItem('apellido', (document.querySelector('input[aria-label="apellido"]') as HTMLInputElement)?.value || '');
+    localStorage.setItem('correo', (document.querySelector('input[aria-label="email"]') as HTMLInputElement)?.value || '');
+    localStorage.setItem('celular', (document.querySelector('input[aria-label="celular"]') as HTMLInputElement)?.value || '');
+    alert(this.programasCarrito.length);
+    alert(this.inscritos.length);
+    localStorage.setItem('programas', JSON.stringify(this.programasCarrito));
+    localStorage.setItem('inscritos', JSON.stringify(this.inscritos));
 
     this.carritoService.vaciarCarrito();
     this.programasCarrito = [];
@@ -248,7 +258,7 @@ aplicardescuento() {
   //vertifica tarjeta de crédito con el API
 
   verificarTarjeta() {
-    const numeroTarjeta = (document.querySelector('input[aria-label="Tarjeta"]') as HTMLInputElement)?.value.trim ();
+    const numeroTarjeta = (document.querySelector('input[aria-label="tarjeta"]') as HTMLInputElement)?.value.trim ();
       if (!numeroTarjeta) {
         alert('Por favor ingresar un número de tarjeta');
         return;

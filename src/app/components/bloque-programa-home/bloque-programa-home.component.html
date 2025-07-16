@@ -9,9 +9,9 @@
 
 <div id="programasCarousel" class="carousel slide container-xxl px-5 py-2" data-bs-ride="carousel" data-bs-interval="5000">
   <div class="carousel-inner">
-    <div class="carousel-item z-3" *ngFor="let grupo of dividirEnGrupos(programas, 4); let i = index" [class.active]="i === 0">
+    <div class="carousel-item z-3" *ngFor="let grupo of dividirEnGrupos(programas, 3); let i = index" [class.active]="i === 0">
       <div class="row">
-        <div class="col-sm-3 mt-2 mb-2 " *ngFor="let programa of grupo">
+        <div class="col-sm-4 mt-2 mb-2 px-4" *ngFor="let programa of grupo">
           <div id="component" class="d-grid justify-content-center">
             <div class="d-grid justify-content-center rounded-top-3" style="background-color: #851819;">
               <h4 class="text-light px-2 py-1 my-2 text-center fecha_bloque_programa">
@@ -23,17 +23,18 @@
             </div>
             <div class="justify-content-start rounded-bottom-3 py-3" style="background-color: #F4F4F4;">
               <div class="row text-lg-start px-2">
-                <h4 class="text-dark fs-6 fw-normal baskerville">
+                <div class="programa">
+                <h4 class="fs-6 fw-normal baskerville brandfontcolor">
                   {{ programa.tipoprograma || 'Curso' }}
                 </h4>
                 <h3 class="text-dark fs-4 fw-normal baskerville">
                   {{ programa.nombre }}
                 </h3>
+                </div>
                 <app-boton-ir-programa [programa]="programa"></app-boton-ir-programa>
               </div>
               
             </div>
-            <div class="bg-light rounded-3 shadow"></div>
           </div>
         </div>
       </div>

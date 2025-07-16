@@ -94,7 +94,7 @@
               <input type="text" class="form-control baskerville" placeholder="Nombre" aria-label="nombre" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
             </div>
             <div class="col mb-4">
-              <input type="text" class="form-control baskerville" placeholder="Apellido" aria-label="Apellido" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
+              <input type="text" class="form-control baskerville" placeholder="Apellido" aria-label="apellido" oninput="this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s]/g, '')">
             </div>
           </div>
           
@@ -124,7 +124,7 @@
               <input type="text" class="form-control" aria-label="zip">
             </div>
             <div class="mb-4">
-              <input type="text" class="form-control baskerville" placeholder="Dirección" aria-label="Direccion">
+              <input type="text" class="form-control baskerville" placeholder="Dirección" aria-label="direccion">
             </div>
           </div>
 
@@ -185,7 +185,7 @@
                 <label for="Tarjeta" class="baskerville">
                   Número de tarjeta
                 </label>
-                <input type="text" class="form-control" placeholder="1234-5678-9012" aria-label="Tarjeta" maxlength="12" pattern="[0-9]{3}" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                <input type="text" class="form-control" placeholder="1234-5678-9012" aria-label="tarjeta" maxlength="12" pattern="[0-9]{3}" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
               </div>
             </div>
             
@@ -194,7 +194,7 @@
                 <label for="FechaEX" class="baskerville">
                   Fecha de expiración
                 </label>
-                <input type="date" class="form-control"aria-label="card3">
+                <input type="date" class="form-control"aria-label="fechaEX" min="{{ today | date: 'yyyy-MM' }}" max="2030-12-31">
               </div>
               
               <div class="col mb-3">

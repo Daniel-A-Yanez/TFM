@@ -1,23 +1,44 @@
-<div class="container py-3">
-  <h3 class="baskerville pb-4">Asesoría</h3>
+<div class="container py-3 form_container">
+  <div class="container text-center">
+  <h3 class="baskerville pb-4 brandfontcolor">Asesoría</h3>
+  </div>
   <div>
     <form [formGroup]="contactoForm" (ngSubmit)="onSubmit()">
-      <div class="mb-3">
-        <input type="text" formControlName="nombre" class="form-control form_input" placeholder="Nombre">
+      <div class="row">
+        <div class="mb-3 col-6">
+          <input type="text" formControlName="nombre" class="form-control form_input" placeholder="Nombre">
+        </div>
+        <div class="mb-3 col-6">
+          <input type="text" formControlName="apellido" class="form-control form_input" placeholder="Apellido">
+        </div>
       </div>
-      <div class="mb-3">
-        <input type="text" formControlName="apellido" class="form-control form_input" placeholder="Apellido">
+      <div class="row">
+        <div class="mb-3 col-6">
+          <input type="email" formControlName="email" class="form-control form_input" placeholder="Correo electrónico">
+        </div>
+        <div class="mb-3 col-6">
+          <input type="text" formControlName="celular" class="form-control form_input" placeholder="Celular">
+        </div>
       </div>
-      <div class="mb-3">
-        <input type="email" formControlName="email" class="form-control form_input" placeholder="Correo electrónico">
-      </div>
-      <div class="mb-3">
+      <div class="row">
+      <div class="mb-3 col-6">
         <input type="text" formControlName="cargo" class="form-control form_input" placeholder="Cargo">
       </div>
-      <div class="mb-3">
+      <div class="mb-3 col-6">
         <input type="text" formControlName="empresa" class="form-control form_input" placeholder="Empresa">
       </div>
-      <button type="submit" class="btn btn-primary" [disabled]="!contactoForm.valid">Enviar</button>
+      </div>
+      <div class="flex-md-row my-2">
+        <label class="form-check-label" for="termsCheck"><input type="checkbox" class="form-check-input radio-inline" id="termsCheck" formControlName="politica">
+        He leído y acepto el consentimiento para el uso y tratamiento para mis datos conforme los términos y condiciones y conozco la política de tratamiento de datos personales*</label>
+      </div>
+      <div class="flex-md-row my-2">
+        <label class="form-check-label" for="termsCheck"><input type="checkbox" class="form-check-input radio-inline" id="termsCheck" formControlName="politicaComunicaciones">
+        Acepto el envío de comunicaciones comerciales, cursos, programas  eventos de Fundación de Apoyo a la Educación Cicerón (Escuela de  Empresas - Educación Empresarial)</label>
+      </div>
+      <div class="mb-3 mt-3 col-12 text-center">
+      <button type="submit" class="btn btn-primary btnprograma" [disabled]="!contactoForm.valid">Enviar</button>
+      </div>
     </form>
   </div>
   <div *ngIf="mensajeRespuesta" class="mt-3 alert alert-info">

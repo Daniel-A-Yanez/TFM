@@ -1,0 +1,10 @@
+.icono {
+    height: 100%;
+}
+
+.icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4rem;
+}

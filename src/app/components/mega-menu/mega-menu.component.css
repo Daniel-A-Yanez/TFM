@@ -1,0 +1,29 @@
+.megamenu {
+  width: 70vw;
+  max-width: 90vw;
+  background-color: white;
+  border: 1px solid #25252571;
+    position: absolute;
+    left: -100%;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  z-index: 1000;
+}
+
+.dropdown-menu.d-block {
+  display: block;
+}
+
+.nav-link {
+    color: #333 !important;
+    font-weight: 400;
+     transition: color 0.3s, scale 0.3s;
+  } 
+
+.nav-link:hover {
+    color: #851819 !important;
+    scale: 1.05;
+}

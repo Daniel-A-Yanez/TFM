@@ -1,8 +1,9 @@
 <app-hero-programas [programa]="programa"></app-hero-programas>
+
 <div class="container-fluid cream_background">
   <div class="container-xl">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-7">
         <ul class="nav nav-tabs mt-3 mb-3" id="programaTab" role="tablist">
           <li class="nav-item" role="presentation">
             <button class="nav-link active" id="resumen-tab" data-bs-toggle="tab" data-bs-target="#resumen" type="button" role="tab">Resumen</button>
@@ -15,8 +16,8 @@
           </li>
         </ul>
       </div>
-      <div class="col-md-4">
-      <button class="btn btn-primary mt-3" (click)="irACheckout()">Inscripción y pago</button>
+      <div class="col-md-5 text-center">
+      <button class="btn btn-primary mt-3 btnprograma" (click)="irACheckout()">Inscripción y pago</button>
       </div>
     </div>
   </div>
@@ -42,12 +43,13 @@
             </ul>
           </div>
         </div>
-
+        
+          <!--Tarjeta Contenido-->
         <div class="tab-pane fade" id="contenido" role="tabpanel">
           <div *ngIf="programa.contenido && programa.contenido.length" class="mt-3">
             <h3 class="mb-3 baskerville pb-4">Contenido del programa</h3>
             <div *ngFor="let modulo of programa.contenido" class="card mb-4 p-3">
-              <h5 class="fw-bold baskerville pb-2">{{ modulo.modulo }}: {{ modulo.titulo }}</h5>
+              <h5 class="fw-normal baskerville pb-2">{{ modulo.modulo }}: {{ modulo.titulo }}</h5>
               <p class="helvetica fw-light">{{ modulo.resumen }}</p>
             </div>
           </div>
@@ -59,12 +61,12 @@
             
             <div class="row">
               <!--Tarjeta de cada profesor-->
-                <div *ngFor="let profesor of programa.profesores" class="col-md-6 mb-4">
+                <div *ngFor="let profesor of programa.profesores" class="col-md-4 mb-2">
                   <div class="card mb-3 p-0">
-                     <img [src]="profesor.foto" alt="{{ profesor.nombre }}" class="card-img-top object-fit-cover border-0" style="height: 350px;">
+                     <img [src]="profesor.foto" alt="{{ profesor.nombre }}" class="card-img-top object-fit-cover border-0" style="height: 20rem;">
                     <div class="row g-0">
                         <div class="card-body">
-                          <h6 class="fs-4 fw-bold card-title baskerville">{{ profesor.nombre }}</h6>
+                          <h6 class="fs-4 fw-normal card-title baskerville brandfontcolor">{{ profesor.nombre }}</h6>
                           <p class="card-text overflow-y-hidden helvetica fw-light" style="height: 13.5rem;">{{ profesor.resumen }}</p>
                         </div>
                     </div>

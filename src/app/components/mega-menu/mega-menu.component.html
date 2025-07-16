@@ -1,0 +1,39 @@
+<div class="dropdown" (mouseenter)="mostrarMenu = true" (mouseleave)="mostrarMenu = false">
+  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Educación Empresarial
+  </a>
+  
+
+  <div class="dropdown-menu p-4 megamenu" [ngClass]="{ 'd-block': mostrarMenu }">
+    <div class="row">
+        <div class="col-md-3">
+            <h6 class="text-uppercase baskerville brandfontcolor">Áreas</h6>
+            <a class="dropdown-item" [routerLink]="['/programas-abiertos']" [queryParams]="{ area: 'Calidad y productividad' }">Calidad y productividad</a>
+            <a class="dropdown-item" [routerLink]="['/programas-abiertos']" [queryParams]="{ area: 'Desarrollo del talento' }">Desarrollo del talento</a>
+            <a class="dropdown-item" [routerLink]="['/programas-abiertos']" [queryParams]="{ area: 'Finanzas' }">Finanzas</a>
+            <a class="dropdown-item" [routerLink]="['/programas-abiertos']" [queryParams]="{ area: 'Marketing y Ventas' }">Marketing y ventas</a>
+            <a class="dropdown-item" [routerLink]="['/programas-abiertos']" [queryParams]="{ area: 'Liderazgo' }">Liderazgo</a>
+            <a class="dropdown-item" [routerLink]="['/programas-abiertos']" [queryParams]="{ area: 'Gerencia y estrategia' }">Gerencia y estrategia</a>
+        </div>
+        <div class="col-md-3">
+            <h6 class="text-uppercase baskerville brandfontcolor">Tipos de programa</h6>
+            <a class="dropdown-item" [routerLink]="['/programas-abiertos']" [queryParams]="{ tipo: 'Diplomado' }">Diplomado</a>
+            <a class="dropdown-item" [routerLink]="['/programas-abiertos']" [queryParams]="{ tipo: 'Certificación' }">Certificaciones</a>
+            <a class="dropdown-item" [routerLink]="['/programas-abiertos']" [queryParams]="{ tipo: 'Certificado' }">Certificados</a>
+            <a class="dropdown-item" [routerLink]="['/programas-abiertos']" [queryParams]="{ tipo: 'Curso' }">Cursos</a>
+        </div>
+        <div class="col-md-3">
+            <h6 class="text-uppercase baskerville brandfontcolor">Modalidad</h6>
+            <a class="dropdown-item" [routerLink]="['/programas-abiertos']" [queryParams]="{ modalidad: 'Presencial' }">Presencial</a>
+            <a class="dropdown-item" [routerLink]="['/programas-abiertos']" [queryParams]="{ modalidad: 'Semipresencial' }">Semipresencial</a>
+            <a class="dropdown-item" [routerLink]="['/programas-abiertos']" [queryParams]="{ modalidad: 'Virtual' }">Virtual</a>
+        </div>
+        <div class="col-md-3">
+            <h6 class="text-uppercase baskerville brandfontcolor">Incompany</h6>
+            <a class="dropdown-item" (click)="seccioninactiva()">Programas bajo demanda</a>
+            <a class="dropdown-item" (click)="seccioninactiva()">Modelo de desempeño MODE</a>
+            <a class="dropdown-item" (click)="seccioninactiva()">Clientes y testimonios</a>
+        </div>
+      </div>
+    </div>
+</div>

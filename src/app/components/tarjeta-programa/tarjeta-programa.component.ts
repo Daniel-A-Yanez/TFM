@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ApiProgramasService } from '../../Services/api-programas.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tarjeta-programa',
@@ -24,10 +25,10 @@ areas: string[] = [];
 tipos: string[] = [];
 modalidades: string[] = [];
 
-constructor(private apiProgramasService: ApiProgramasService) {}
+constructor(private apiProgramasService: ApiProgramasService, private route: ActivatedRoute) {}
 
 ngOnInit(): void {
-  this.apiProgramasService.obtenerProgramas().subscribe(data => {
+    this.apiProgramasService.obtenerProgramas().subscribe(data => {
     this.programas = data;
     this.programasFiltrados = data;
 
@@ -35,7 +36,32 @@ ngOnInit(): void {
     this.tipos = [...new Set(data.map(p => p.tipoprograma))];
     this.modalidades = [...new Set(data.map(p => p.modalidad))];
   });
+
+    this.route.queryParams.subscribe(params => {
+    const tipo = params['tipo'];
+    if (tipo) {
+      this.filtros.tipo = tipo;
+      this.filtrarProgramas();
+    }
+  });
+
+    this.route.queryParams.subscribe(params => {
+    const area = params['area'];
+    if (area) {
+      this.filtros.area = area;
+      this.filtrarProgramas();
+    }
+  });
+
+    this.route.queryParams.subscribe(params => {
+    const modalidad = params['modalidad'];
+    if (modalidad) {
+      this.filtros.modalidad = modalidad;
+      this.filtrarProgramas();
+    }
+  });
 }
+
 
 filtrarProgramas() {
   this.programasFiltrados = this.programas.filter(p => {

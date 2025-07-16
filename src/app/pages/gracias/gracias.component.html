@@ -1,7 +1,54 @@
-<div class="container-fluid">
-    <div class="container-xl text-center mt-4 mb-4">
-    <h1 class="baskerville">¡Gracias, {{ nombre }}!</h1>
-    <p>Tu inscripción al programa <strong>{{ programa }}</strong> ha sido procesada con éxito.</p>
-    <p>En breve recibirás un correo con todos los detalles.</p>
+<div class="container-fluid py-4">
+    
+  <div class="container-xl text-center mt-4 mb-4">
+    <h1 class="baskerville fs-2">¡{{ nombre }} {{ apellido }}, gracias por tu compra!</h1>
+    <p>En breve recibirás un correo a {{ correo }} con todos los detalles.</p>
+  </div>
+
+  <div class="container-xl text-start mt-5">
+     <h2 class="baskerville brandfontcolor mb-4">Los detalles de tu compra:</h2>
+    <div class="card py-4 px-3 mb-4">
+      <h3 class="baskerville brandfontcolor fs-4">Datos de facturación</h3>
+      <p class="baskerville"><strong>Nombre del comprador:</strong> {{ nombre }} {{ apellido }}</p>
+      <p class="baskerville"><strong>Correo electrónico:</strong> {{ correo }}</p>
+      <p class="baskerville"><strong>Celular:</strong> {{ celular }}</p>
+      <h3 class="baskerville brandfontcolor fs-4">Programas adquiridos:</h3>
+
+      <p class="baskerville" *ngFor="let programa of listaProgramas"><strong>{{ programa.programa.nombre }} :</strong> {{ programa.cantidad }} </p>
+
+    </div>
+
+    <div>
+      <h2 class="baskerville brandfontcolor mb-4">Datos de los inscritos:</h2>
+      <div class="card py-3 px-3 my-4" *ngFor="let programa of listaProgramas">
+        <h3 class="mt-3 baskerville brandfontcolor fs-4 card-title">{{ programa.programa.nombre }}</h3>
+
+          <ng-container *ngFor="let i of getArray(programa.cantidad)">
+            
+          <div class="mb-3 p-2 card-body">
+            <div class="d-flex justify-content-between align-items-center">
+            <p class="baskerville"><strong>Participante {{ i + 1 }}</strong></p>
+            <p class="helvetica"><strong>Nombre:</strong> {{ getCampoValor('nombre_pax_' + programa.programa.id + '_' + i) }}</p>
+            <p class="helvetica"><strong>Apellido:</strong> {{ getCampoValor('apellido_pax_' + programa.programa.id + '_' + i) }}</p>
+            <p class="helvetica"><strong>Cargo:</strong> {{ getCampoValor('cargo_pax_' + programa.programa.id + '_' + i) }}</p>
+            <p class="helvetica"><strong>Empresa:</strong> {{ getCampoValor('empresa_pax_' + programa.programa.id + '_' + i) }}</p>
+            <p class="helvetica"><strong>Celular:</strong> {{ getCampoValor('celular_pax_' + programa.programa.id + '_' + i) }}</p>
+            <p class="helvetica"><strong>Correo:</strong> {{ getCampoValor('correo_pax_' + programa.programa.id + '_' + i) }}</p>
+          </div>
+          </div>
+        </ng-container>
+
+      </div>
+
+    </div>
+
+    <div class="text-center mt-4">
+      <button class="btn btn-primary baskerville btnprograma" (click)="redirectToHome()">Volver al inicio</button>
+    </div>
+
   </div>
 </div>
+
+
+
+       

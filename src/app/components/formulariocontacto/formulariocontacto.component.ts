@@ -20,7 +20,10 @@ export class FormulariocontactoComponent {
       apellido: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       cargo: [''],
-      empresa: ['']
+      empresa: [''],
+      celular: ['', [Validators.required, Validators.pattern('^[0-9]+$')]],
+      politica: [false, Validators.requiredTrue],
+      politicaComunicaciones: [false],
     });
   }
 

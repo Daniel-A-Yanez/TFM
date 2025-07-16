@@ -1,0 +1,39 @@
+<div class="container-fluid py-5">
+    <div class="container-xl">
+         <div class="container-xxl d-flex justify-content-center">
+    <h2 class="baskerville mt-2 mb-4 brandfontcolor">EXPERIENCIA USFQ</h2>
+  </div>
+    </div>
+    <div class="container-xl text-center my-4">
+        <p class="helvetica">Ser parte de la primera universidad de las artes liberales del mundo  hispano, que integra todas las áreas del saber para formar profesionales que lideran con integridad y libertad para crear valor en la sociedad.  Somos la Universidad #1 en el Ecuador y entre las mejores de  Latinoamérica, según el QS World University Ranking.</p>
+    </div>
+
+    <div id="testimoniosCarousel" class=" carousel slide  container-xl py-4 py-2" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-inner">
+            
+          <div class="carousel-item z-3" *ngFor="let grupo of gruposTestimonios; let i = index" [class.active]="i === 0">
+            <div class="row">
+              <div class="col-12 col-md-6 text-center px-2 py-2" *ngFor="let testimonio of grupo">
+                <p class="helvetica">{{ testimonio.testimonio }}</p>
+                <h4 class="fs-5 baskerville brandfontcolor">{{ testimonio.nombre }}</h4>
+                <h4 class="fs-5 baskerville">{{ testimonio.cargo }}</h4>
+              </div>
+            </div>
+        </div>
+
+        </div> 
+        <button class="carousel-control-prev z-0 my-3" type="button" data-bs-target="#testimoniosCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next z-0 my-3" type="button" data-bs-target="#testimoniosCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+        </button>
+    </div>
+
+
+
+
+
+</div>

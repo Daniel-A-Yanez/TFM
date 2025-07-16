@@ -1,3 +1,9 @@
+:root {
+  --nav-color: #FAF3E9;
+  --nav-text: #333;
+  --nav-hover: #851819;
+}
+
 .header-bgcolor {
     background-color: #FAF3E9;
   }
@@ -26,7 +32,7 @@
   
   .logo_header {
     width: auto;
-    height: 50px;
+    height: 40px;
     margin-right: 10px;
   }
 
@@ -41,3 +47,23 @@
     align-items: center;
     margin-right: 50px;
   }
+
+  .cart-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .cart-icon:hover {
+    color: #851819;
+  }
+
+  .nav-link {
+    color: #333 !important;
+    font-weight: 400;
+    transition: color 1s, scale 1s,; 
+  } 
+
+  .nav-link:hover {
+    color: #851819 !important;
+    scale: 1.05;
+}

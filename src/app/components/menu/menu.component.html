@@ -3,23 +3,27 @@
         <div class="container-xxl">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"> 
             <!-- Logo -->
-            <a routerLink="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none"> <img class="logo_header" src="assets/images/logo.EEUSFQ.color.png" alt="Logo Escuela de Empresas USFQ"></a>
-            <!-- Menu -->
+            
+            <a routerLink="/" class="flex-1 align-items-center mb-2 mx-4 link-body-emphasis text-decoration-none"> <img class="logo_header" src="assets/images/logo.EEUSFQ.color.png" alt="Logo Escuela de Empresas USFQ"></a>
 
-             
+            <!-- Navigation Links -->
+            <nav class="nav flex-lg-grow-1">
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a routerLink="/" class="nav-link px-2 link-body-emphasis">Maestrías</a></li> 
-                <li><a routerLink="programas-abiertos" class="nav-link px-2 link-body-emphasis">Educación Empresarial</a></li>
-                <li><a href="#" class="nav-link px-2 link-body-emphasis">Escuela de Empresas</a></li>
-                <li><a href="#" class="nav-link px-2 link-body-emphasis">EE-News</a></li>
-                <li><a href="#" class="nav-link px-2 link-body-emphasis">Investigación</a></li>
-                <li><a href="#" class="nav-link px-2 link-body-emphasis">Artículos</a></li>
-                <li><a href="#" class="nav-link px-2 link-body-emphasis">USFQ</a></li>
+                <li><a routerLink="/" (click)="seccioninactiva()" class="nav-link px-2 link-body-emphasis">Maestrías</a></li> 
+                <li class="nav-item dropdown">
+                  <app-mega-menu></app-mega-menu>
+                </li>
+                <li><a routerLink="/" (click)="seccioninactiva()" class="nav-link px-2 link-body-emphasis">Escuela de Empresas</a></li>
+                <li><a routerLink="/" (click)="seccioninactiva()" class="nav-link px-2 link-body-emphasis">EE-News</a></li>
+                <li><a routerLink="/" (click)="seccioninactiva()" class="nav-link px-2 link-body-emphasis">Investigación</a></li>
+                <li><a routerLink="/" (click)="seccioninactiva()" class="nav-link px-2 link-body-emphasis">Artículos</a></li>
+                <li><a routerLink="/" (click)="seccioninactiva()" class="nav-link px-2 link-body-emphasis">USFQ</a></li>
                 </ul>
-
+                </nav>
+            <!-- Cart -->
             <div class="position-relative ms-3">
               <a routerLink="/checkout" class="nav-link px-2 link-body-emphasis">
-                🛒
+                <img src="assets/iconos/cart-shopping-solid.svg" alt="Carrito de Compras" class="cart-icon">
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                   {{ totalEnCarrito }}
                 </span>
