@@ -32,6 +32,4 @@ export class BloqueProgramaHomeComponent implements OnInit {
     return resultado;
   }
 
-
 }
-
