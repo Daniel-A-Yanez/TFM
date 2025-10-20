@@ -28,37 +28,26 @@ modalidades: string[] = [];
 constructor(private apiProgramasService: ApiProgramasService, private route: ActivatedRoute) {}
 
 ngOnInit(): void {
-    this.apiProgramasService.obtenerProgramas().subscribe(data => {
+  this.apiProgramasService.obtenerProgramas().subscribe(data => {
     this.programas = data;
-    this.programasFiltrados = data;
-
     this.areas = [...new Set(data.map(p => p.area))];
     this.tipos = [...new Set(data.map(p => p.tipoprograma))];
     this.modalidades = [...new Set(data.map(p => p.modalidad))];
-  });
 
-    this.route.queryParams.subscribe(params => {
-    const tipo = params['tipo'];
-    if (tipo) {
-      this.filtros.tipo = tipo;
-      this.filtrarProgramas();
-    }
-  });
+    // Aplicar los filtros iniciales
+    const params = this.route.snapshot.queryParams;
+    this.filtros.area = params['area'] || '';
+    this.filtros.tipo = params['tipo'] || '';
+    this.filtros.modalidad = params['modalidad'] || '';
+    this.filtrarProgramas();
 
+    // Suscribirse a cambios en los parámetros de la URL
     this.route.queryParams.subscribe(params => {
-    const area = params['area'];
-    if (area) {
-      this.filtros.area = area;
+      this.filtros.area = params['area'] || '';
+      this.filtros.tipo = params['tipo'] || '';
+      this.filtros.modalidad = params['modalidad'] || '';
       this.filtrarProgramas();
-    }
-  });
-
-    this.route.queryParams.subscribe(params => {
-    const modalidad = params['modalidad'];
-    if (modalidad) {
-      this.filtros.modalidad = modalidad;
-      this.filtrarProgramas();
-    }
+    });
   });
 }
 

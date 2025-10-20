@@ -21,6 +21,9 @@
 </div>
 
 <div class="row">
+  <div *ngIf="programasFiltrados.length === 0" class="col-12 text-center my-5">
+    <p class="text-muted">No existen programas con estas características.</p>
+  </div>
   <div class="col-md-4 d-flex align-items-stretch" *ngFor="let programa of programasFiltrados">
       <div class="card p-3 mb-3 cardprograma h-100">
         <h3 class="tipoprograma baskerville">{{ programa.tipoprograma }}</h3>
